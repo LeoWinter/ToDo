@@ -22,7 +22,7 @@ class DialogBox extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            Center(
+            const Center(
               child: Text(
                 'Nova tarefa',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -59,21 +59,21 @@ class DialogBox extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: onSave,
-                  child: Text('Salvar'),
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(0),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.green.shade900),
                   ),
+                  child: const Text('Salvar'),
                 ),
                 ElevatedButton(
                   onPressed: onCancel,
-                  child: Text('Fechar'),
                   style: ButtonStyle(
                     elevation: MaterialStateProperty.all(0),
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.red.shade900),
                   ),
+                  child: const Text('Fechar'),
                 ),
               ],
             ),

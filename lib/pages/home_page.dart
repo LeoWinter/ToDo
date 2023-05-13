@@ -43,15 +43,45 @@ class _HomePageState extends State<HomePage> {
             },
             onSave: () {
               setState(() {
-                ToDo toDo = ToDo(
-                    title: _controllerName.text,
-                    task: _controllerTarefa.text,
-                    did: false);
-                Boxes.getToDo().add(toDo);
+                if (_controllerTarefa.text.isEmpty &&
+                    _controllerName.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'Você precisa descrever a tarefa antes de salvar!'),
+                      duration: Duration(seconds: 3),
+                      behavior: SnackBarBehavior.fixed,
+                    ),
+                  );
+                } else if (_controllerTarefa.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'Você precisa inserir instruções para sua tarefa'),
+                      duration: Duration(seconds: 3),
+                      behavior: SnackBarBehavior.fixed,
+                    ),
+                  );
+                } else if (_controllerName.text.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content:
+                          Text('Você precisa inserir o título para sua tarefa'),
+                      duration: Duration(seconds: 3),
+                      behavior: SnackBarBehavior.fixed,
+                    ),
+                  );
+                } else {
+                  ToDo toDo = ToDo(
+                      title: _controllerName.text,
+                      task: _controllerTarefa.text,
+                      did: false);
+                  Boxes.getToDo().add(toDo);
+                  _controllerName.clear();
+                  _controllerTarefa.clear();
+                  Navigator.of(context).pop();
+                }
               });
-              _controllerName.clear();
-              _controllerTarefa.clear();
-              Navigator.of(context).pop();
             });
       },
     );
